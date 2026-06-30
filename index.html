@@ -681,5 +681,35 @@
 
   <!-- Visibility failsafe: never leave reveal/hero content hidden -->
   <script>setTimeout(function(){document.querySelectorAll(".reveal,[data-reveal]").forEach(function(e){e.classList.add("is-visible");e.style.opacity="1";e.style.transform="none";e.style.visibility="visible"});document.querySelectorAll("[data-hero-line],.hero__line,.hero__title .line>span,.ltr").forEach(function(e){e.style.opacity="1";e.style.transform="none";e.style.visibility="visible"})},2200);</script>
+  <!-- Live menu from Supabase (editable via the admin panel). Progressive enhancement: static menu shows if this fails. -->
+  <script>
+  (function(){
+    var SB='https://scgcgfcfvbuppkraxjrp.supabase.co';
+    var KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNjZ2NnZmNmdmJ1cHBrcmF4anJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwNjk2MTQsImV4cCI6MjA5NTY0NTYxNH0.Yjz5X8xnqYmOQOMN-4VGBCw0uF3Sy0D-umC-b5nxp54';
+    var TABMAP={ 'tacos':['Tacos & Birria','Burritos'], 'plates':['Plates & Specialties','Street Snacks & Sides'], 'drinks':['Drinks'] };
+    function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+    function price(it){ if(it.precio_texto) return esc(it.precio_texto); if(it.precio==null||it.precio==='') return ''; var p=Number(it.precio); return '$'+(Number.isInteger(p)?p:p.toFixed(2)); }
+    function itemHTML(it){ return '<div class="m-item"><div class="m-item__head"><span class="m-item__name">'+esc(it.nombre)+'</span><span class="m-leader"></span><span class="m-item__price">'+price(it)+'</span></div>'+(it.descr?'<p class="m-item__desc">'+esc(it.descr)+'</p>':'')+'</div>'; }
+    fetch(SB+'/rest/v1/ld_menu?select=*&activo=eq.true&order=orden',{headers:{apikey:KEY}})
+      .then(function(r){return r.ok?r.json():Promise.reject();})
+      .then(function(items){
+        if(!items||!items.length) return;
+        var groups={}; items.forEach(function(it){ (groups[it.categoria]=groups[it.categoria]||[]).push(it); });
+        Object.keys(TABMAP).forEach(function(panelKey){
+          var panel=document.querySelector('.menu__panel[data-panel="'+panelKey+'"]'); if(!panel) return;
+          var cols=panel.querySelector('.menu__cols'); if(!cols) return;
+          var html='';
+          TABMAP[panelKey].forEach(function(cat){
+            if(!groups[cat]) return;
+            html+='<div class="menu__group"><h3 class="menu__group-title">'+esc(cat)+'</h3>';
+            groups[cat].forEach(function(it){ html+=itemHTML(it); });
+            html+='</div>';
+          });
+          if(html) cols.innerHTML=html;
+        });
+      })
+      .catch(function(){});
+  })();
+  </script>
 </body>
 </html>
