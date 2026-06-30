@@ -416,20 +416,16 @@
         <h2 class="section-head" data-reveal>Hungry yet?</h2>
       </div>
 
-      <div class="swiper gallery__swiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide gallery__slide"><img src="assets/exterior.jpg" alt="La Dueña's food truck and dining room lit up in green neon at dusk on Washington Street" loading="lazy" decoding="async" width="1600" height="2133" /></div>
-          <div class="swiper-slide gallery__slide"><img src="assets/torta.jpg" alt="A toasted torta stacked with carne asada, crema, pico de gallo and avocado" loading="lazy" decoding="async" width="1200" height="1600" /></div>
-          <div class="swiper-slide gallery__slide"><img src="assets/tacos-real.jpg" alt="Three street tacos with cilantro and onion, salsa verde and roja, and fresh lime" loading="lazy" decoding="async" width="1200" height="1600" /></div>
-          <div class="swiper-slide gallery__slide"><img src="assets/cheesesteak.jpg" alt="A steak-and-cheese sandwich with grilled peppers and melted cheese, hot off the line" loading="lazy" decoding="async" width="1200" height="1600" /></div>
-          <div class="swiper-slide gallery__slide"><img src="assets/tortas-plated.jpg" alt="Two carne asada tortas plated and ready at the counter" loading="lazy" decoding="async" width="1300" height="975" /></div>
-          <div class="swiper-slide gallery__slide"><img src="assets/birria.jpg" alt="Birria tacos topped with onion and cilantro" loading="lazy" decoding="async" width="1600" height="1039" /></div>
-          <div class="swiper-slide gallery__slide"><img src="assets/tostada.jpg" alt="A crisp tostada heaped with shredded queso fresco in a green basket" loading="lazy" decoding="async" width="1620" height="1080" /></div>
-        </div>
-        <div class="gallery__nav">
-          <button class="gallery__btn gallery__btn--prev" aria-label="Previous">&larr;</button>
-          <button class="gallery__btn gallery__btn--next" aria-label="Next">&rarr;</button>
-        </div>
+      <style>
+        .ld-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:14px;max-width:1180px;margin:0 auto;padding:0 1.2rem}
+        .ld-gallery figure{margin:0;border-radius:14px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 18px 42px -24px rgba(0,0,0,.55);background:#1a1410}
+        .ld-gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+        .ld-gallery figure:hover img{transform:scale(1.06)}
+      </style>
+      <div class="ld-gallery" id="ldGallery">
+        <figure><img src="assets/torta.jpg" alt="A toasted torta stacked with carne asada, crema, pico de gallo and avocado" loading="lazy" decoding="async"></figure>
+        <figure><img src="assets/tacos-real.jpg" alt="Three street tacos with cilantro and onion" loading="lazy" decoding="async"></figure>
+        <figure><img src="assets/birria.jpg" alt="Birria tacos topped with onion and cilantro" loading="lazy" decoding="async"></figure>
       </div>
     </section>
 
@@ -681,6 +677,20 @@
 
   <!-- Visibility failsafe: never leave reveal/hero content hidden -->
   <script>setTimeout(function(){document.querySelectorAll(".reveal,[data-reveal]").forEach(function(e){e.classList.add("is-visible");e.style.opacity="1";e.style.transform="none";e.style.visibility="visible"});document.querySelectorAll("[data-hero-line],.hero__line,.hero__title .line>span,.ltr").forEach(function(e){e.style.opacity="1";e.style.transform="none";e.style.visibility="visible"})},2200);</script>
+  <!-- Live gallery from Supabase Storage (editable via the admin panel). -->
+  <script>
+  (function(){
+    var SB='https://scgcgfcfvbuppkraxjrp.supabase.co';
+    var KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNjZ2NnZmNmdmJ1cHBrcmF4anJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwNjk2MTQsImV4cCI6MjA5NTY0NTYxNH0.Yjz5X8xnqYmOQOMN-4VGBCw0uF3Sy0D-umC-b5nxp54';
+    function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+    var g=document.getElementById('ldGallery'); if(!g) return;
+    fetch(SB+'/rest/v1/ld_photos?select=url,alt&seccion=eq.gallery&activo=eq.true&order=orden',{headers:{apikey:KEY}})
+      .then(function(r){return r.ok?r.json():Promise.reject();})
+      .then(function(rows){ if(rows&&rows.length){ g.innerHTML = rows.map(function(p){ return '<figure><img src="'+p.url+'" alt="'+esc(p.alt)+'" loading="lazy" decoding="async"></figure>'; }).join(''); } })
+      .catch(function(){});
+  })();
+  </script>
+
   <!-- Live menu from Supabase (editable via the admin panel). Progressive enhancement: static menu shows if this fails. -->
   <script>
   (function(){

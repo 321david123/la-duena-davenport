@@ -162,12 +162,14 @@
 
   /* ---------- Gallery Swiper ---------- */
   if (window.Swiper) {
+    if (document.querySelector(".gallery__swiper")) {
     new Swiper(".gallery__swiper", {
       slidesPerView: "auto",
       spaceBetween: 22,
       grabCursor: true,
       navigation: { prevEl: ".gallery__btn--prev", nextEl: ".gallery__btn--next" }
     });
+    }
 
     new Swiper(".reviews__swiper", {
       slidesPerView: 1,
