@@ -113,6 +113,8 @@
         <a href="tel:+15636398857" class="btn btn--red">Call to Order</a>
       </div>
 
+      <button id="langToggle" class="lang-toggle" type="button" aria-label="Language / Idioma" title="English / Español"><span data-l="en">EN</span><span data-l="es">ES</span></button>
+
       <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="overlay">
         <span></span><span></span><span></span>
       </button>
@@ -153,7 +155,7 @@
           <span class="wordmark__main">DUE<span class="enye">Ñ</span>A</span>
           <span class="wordmark__sub">Mexican &middot; Street Food</span>
         </span>
-        <p class="hero__tagline" data-reveal>
+        <p class="hero__tagline" data-reveal data-i18n="0">
           Authentic Mexican street food, <strong>late into the night.</strong><br />
           Birria, al pastor &amp; the legendary Hot Cheeto Burrito on historic Washington Street.
         </p>
@@ -183,16 +185,16 @@
       <div class="story__grid">
         <div class="story__text">
           <p class="kicker" data-reveal>Who We Are</p>
-          <h2 class="story__head" data-reveal>
+          <h2 class="story__head" data-reveal data-i18n="1">
             The Quad Cities' <em>hidden gem</em>
           </h2>
-          <p data-reveal>
+          <p data-reveal data-i18n="2">
             <em>La Dueña</em> — "the lady boss" — has fed the Quad Cities — first
             from the food truck and now from our kitchen on historic Washington Street in
             Davenport. We're family-run and proudly authentic, the kind of place neighbors
             keep to themselves: a QC hidden gem tucked away off the main drag.
           </p>
-          <p data-reveal>
+          <p data-reveal data-i18n="3">
             Generous portions. Bold, late-night favorites — slow-cooked <em>birria</em>,
             charred <em>al pastor</em>, street-corn elote, and the over-the-top
             <em>Hot Cheeto Burrito</em> that put us on the map. And yes, the margaritas
@@ -232,7 +234,7 @@
     <section class="sig" id="signatures">
       <div class="sig__intro">
         <p class="kicker" data-reveal>Crowd Favorites</p>
-        <h2 class="section-head" data-reveal>The ones they<br />drive across town for.</h2>
+        <h2 class="section-head" data-reveal data-i18n="4">The ones they<br />drive across town for.</h2>
       </div>
 
       <!-- Row 1 -->
@@ -351,7 +353,7 @@
               </div>
             </div>
           </div>
-          <p class="menu__legend"><em class="m-tag m-tag--veg">Veg</em> vegetarian &nbsp;·&nbsp; <em class="m-tag m-tag--hot">Viral</em> the one everyone posts &nbsp;·&nbsp; <em class="m-tag">Favorite</em> crowd favorite</p>
+          <p class="menu__legend" data-i18n="5"><em class="m-tag m-tag--veg">Veg</em> vegetarian &nbsp;·&nbsp; <em class="m-tag m-tag--hot">Viral</em> the one everyone posts &nbsp;·&nbsp; <em class="m-tag">Favorite</em> crowd favorite</p>
         </div>
 
         <!-- PLATES & SNACKS -->
@@ -510,7 +512,7 @@
       <div class="cater__grid">
         <div class="cater__info">
           <p class="kicker" data-reveal>Feed the Whole Crew</p>
-          <h2 class="section-head" data-reveal>Catering &amp; <em>big orders</em></h2>
+          <h2 class="section-head" data-reveal data-i18n="6">Catering &amp; <em>big orders</em></h2>
           <p class="cater__lead" data-reveal>We started on a food truck — feeding a crowd is what we do best. Birthdays,
             graduations, office lunches, late-night parties: tell us the headcount and the date and we'll put
             together a taco bar that disappears fast.</p>
@@ -535,7 +537,7 @@
       <div class="visit__grid">
         <div class="visit__info">
           <p class="kicker" data-reveal>Visit Us</p>
-          <h2 class="section-head" data-reveal>Find us on<br />Washington St.</h2>
+          <h2 class="section-head" data-reveal data-i18n="7">Find us on<br />Washington St.</h2>
 
           <div class="visit__block" data-reveal>
             <h3>Address</h3>
@@ -598,7 +600,7 @@
           <span class="wordmark__la">La</span>
           <span class="wordmark__main">DUE<span class="enye">Ñ</span>A</span>
         </span>
-        <p class="footer__tag">Authentic Mexican street food, late into the night.<br />Family-run on historic Washington Street, Davenport.</p>
+        <p class="footer__tag" data-i18n="8">Authentic Mexican street food, late into the night.<br />Family-run on historic Washington Street, Davenport.</p>
       </div>
 
       <div class="footer__col">
@@ -690,6 +692,97 @@
       })
       .catch(function(){});
   })();
+  </script>
+
+  <!-- ===== EN/ES language toggle ===== -->
+  <style id="i18n-style">
+    .lang-toggle{display:inline-flex;align-items:center;border:1.4px solid currentColor;border-radius:999px;overflow:hidden;background:transparent;cursor:pointer;padding:0;margin:0 .55rem 0 0;font-family:inherit;vertical-align:middle;opacity:.82;-webkit-tap-highlight-color:transparent;flex:0 0 auto}
+    .lang-toggle:hover{opacity:1}
+    .lang-toggle span{display:block;padding:.36em .56em;font-size:.68rem;font-weight:800;letter-spacing:.04em;color:currentColor;line-height:1;transition:background .15s,color .15s}
+    .lang-toggle span.on{background:#c1272d;color:#fff}
+    @media(max-width:600px){ .lang-toggle{margin-right:.5rem} .lang-toggle span{padding:.34em .48em;font-size:.66rem} }
+    html[lang="es"] .hours tr.is-now td::after{ content:" \00b7 Abierto ahora" !important; }
+  </style>
+  <script id="i18n-script">
+
+  (function(){
+    var TEXT = {"Story": "Nosotros", "Favorites": "Favoritos", "Menu": "Menú", "Gallery": "Galería", "Catering": "Catering", "Visit": "Visítanos", "Call to Order": "Llama para ordenar", "Call (563) 639-8857": "Llama al (563) 639-8857", "View the Menu": "Ver el menú", "Davenport · Iowa · Family-run": "Davenport · Iowa · Negocio familiar", "Mexican &middot; Street Food": "Mexicana · Comida callejera", "Open until 2 AM · Thu – Sat": "Abierto hasta las 2 AM · Jue – Sáb", "Scroll": "Desliza", "Open Late": "Abierto hasta tarde", "Who We Are": "Quiénes somos", "See the favorites &rarr;": "Ver los favoritos →", "Off the line at 1330 Washington St": "Recién salido de la cocina en 1330 Washington St", "Family-run": "Negocio familiar", "Google rating": "Calificación en Google", "Open late Thu–Sat": "Abierto tarde Jue–Sáb", "Recommend on Facebook": "Lo recomiendan en Facebook", "Crowd Favorites": "Los favoritos de todos", "#1 most-liked": "El #1 más querido", "Three to an order on warm corn tortillas — your choice of meat with onion and\n            cilantro, our salsa verde and roja, and a squeeze of lime. The most-ordered plate on the menu.": "Tres por orden en tortillas de maíz calientitas — la carne de tu elección con cebolla y\n            cilantro, nuestra salsa verde y roja, y un toque de limón. El platillo más pedido del menú.", "On the menu &rarr;": "En el menú →", "Handheld classic": "El clásico para agarrar", "A toasted telera roll piled with your choice of meat, beans, fresh pico de gallo,\n            crema, avocado and queso. Two hands required — and worth every bite.": "Un pan telera tostado repleto de la carne de tu elección, frijoles, pico de gallo fresco,\n            crema, aguacate y queso. Se necesitan las dos manos — y vale cada mordida.", "Only here": "Solo aquí", "The one that went viral: your choice of meat with rice, beans and cheese, packed\n            with Hot Cheetos and wrapped in a crispy flour tortilla. \"I love the massive burrito\" — and so will you.": "El que se hizo viral: la carne de tu elección con arroz, frijoles y queso, relleno\n            de Hot Cheetos y envuelto en una tortilla de harina crujiente. \"Me encanta el burrito enorme\" — y a ti también.", "Fan favorite": "El favorito de los fans", "Richly seasoned, slow-braised birria folded into crispy corn tortillas and served\n            with a deep, savory consomé for dipping. Three to an order — a regular favorite.": "Birria muy bien sazonada, cocida a fuego lento y doblada en tortillas de maíz crujientes, servida\n            con un consomé profundo y sabroso para remojar. Tres por orden — un favorito de siempre.", "Real Menu · Real Prices": "Menú real · Precios reales", "The Menu": "El Menú", "Tacos, burritos, big plates and street snacks — generous portions,\n          made to order. Order direct by phone, dine in, or grab it on your way home.": "Tacos, burritos, platillos grandes y antojitos de la calle — porciones generosas,\n          hechas al momento. Ordena directo por teléfono, come aquí, o llévatelo de camino a casa.", "Tacos &amp; Burritos": "Tacos y Burritos", "Plates &amp; Snacks": "Platillos y Antojitos", "Drinks": "Bebidas", "Tacos &amp; Birria": "Tacos y Birria", "(3 pcs)": "(3 pzas)", "Corn tortillas, your choice of meat, onion &amp; cilantro or lettuce &amp; tomato": "Tortillas de maíz, la carne de tu elección, cebolla y cilantro o lechuga y jitomate", "(1 pc)": "(1 pza)", "A single taco, your choice of meat": "Un solo taco, la carne de tu elección", "Favorite": "Favorito", "Richly seasoned birria in crispy tortillas, served with consomé": "Birria muy bien sazonada en tortillas crujientes, servida con consomé", "Burritos": "Burritos", "Choice of meat in a crispy flour tortilla with rice, beans, cheese, pico de gallo &amp; avocado": "La carne de tu elección en una tortilla de harina crujiente con arroz, frijoles, queso, pico de gallo y aguacate", "Meat, rice, beans, pico de gallo, jalapeños, sour cream and crispy French fries": "Carne, arroz, frijoles, pico de gallo, jalapeños, crema agria y papas fritas crujientes", "Viral": "Viral", "Choice of meat, rice, beans, cheese and Hot Cheetos, wrapped in a crispy flour tortilla": "La carne de tu elección, arroz, frijoles, queso y Hot Cheetos, envuelto en una tortilla de harina crujiente", "Eggs with your choice of meat, beans and cheese, wrapped in a flour tortilla": "Huevo con la carne de tu elección, frijoles y queso, envuelto en una tortilla de harina", "Plates &amp; Specialties": "Platillos y Especialidades", "Choice of meat, grilled red, yellow &amp; green peppers &amp; onions, rice, beans &amp; tortillas": "La carne de tu elección, pimientos rojos, amarillos y verdes a la parrilla con cebolla, arroz, frijoles y tortillas", "Chicken, steak, chorizo, carnitas &amp; shrimp with peppers, onions, rice and beans": "Pollo, bistec, chorizo, carnitas y camarón con pimientos, cebolla, arroz y frijoles", "Carnitas with rice, beans and corn tortillas": "Carnitas con arroz, frijoles y tortillas de maíz", "Flour tortilla, choice of meat, grilled green, yellow &amp; red peppers &amp; onions, side of sour cream": "Tortilla de harina, la carne de tu elección, pimientos verdes, amarillos y rojos a la parrilla con cebolla, con crema agria aparte", "Steak, cheese, pico de gallo, avocado, sour cream, tostada and beans, grilled crisp": "Bistec, queso, pico de gallo, aguacate, crema agria, tostada y frijoles, dorado a la parrilla", "Toasted telera roll with choice of meat, beans, pico de gallo, crema, avocado &amp; queso": "Pan telera tostado con la carne de tu elección, frijoles, pico de gallo, crema, aguacate y queso", "Shredded chicken rolled in corn tortillas, deep fried, topped with sour cream, lettuce, avocado &amp; queso fresco": "Pollo deshebrado enrollado en tortillas de maíz, bien fritas, con crema agria, lechuga, aguacate y queso fresco encima", "Street Snacks &amp; Sides": "Antojitos y Complementos", "Tortilla chips, choice of meat, beans, lettuce, tomato, cheese, jalapeños &amp; sour cream": "Totopos, la carne de tu elección, frijoles, lechuga, jitomate, queso, jalapeños y crema agria", "Bed of fries topped with queso, steak, fresh pico de gallo, jalapeños and sour cream": "Cama de papas fritas con queso, bistec, pico de gallo fresco, jalapeños y crema agria", "Corn in a cup with mayonnaise and cheese, topped with chili powder": "Elote en vaso con mayonesa y queso, con chile en polvo encima", "A bag of Doritos topped with beans, choice of meat, cheese, lettuce, tomato and sour cream": "Una bolsa de Doritos con frijoles, la carne de tu elección, queso, lechuga, jitomate y crema agria", "Veg": "Veg", "Fresh avocado mashed to order with onion, cilantro, tomato &amp; lime": "Aguacate fresco machacado al momento con cebolla, cilantro, jitomate y limón", "Hard corn tortilla, choice of meat, topped with beans, lettuce, tomato &amp; cheese": "Tortilla de maíz dura, la carne de tu elección, con frijoles, lechuga, jitomate y queso", "Crunchy tortilla chips with a side of tangy salsa": "Totopos crujientes con salsa bien sabrosa aparte", "Side of Rice &amp; Beans": "Orden de Arroz y Frijoles", "Seasoned rice paired with hearty refried beans": "Arroz sazonado acompañado de frijoles refritos bien rendidores", "Mexican fruit soda in assorted flavors": "Refresco mexicano de frutas en varios sabores", "Ice-cold Coca-Cola in the glass bottle": "Coca-Cola bien fría en botella de vidrio", "Chilled bottled Sprite": "Sprite en botella bien fría", "Good to Know": "Bueno saber", "Online ordering": "Pedidos en línea", "Order ahead daily, or dine in and call for catering — generous portions, made to order": "Ordena por adelantado todos los días, o come aquí y llama para catering — porciones generosas, hechas al momento", "Margaritas &amp; cold drinks": "Margaritas y bebidas frías", "In-store": "En el lugar", "Reviewers call the margaritas \"insane\" — ask what's pouring tonight": "Los clientes dicen que las margaritas son \"una locura\" — pregunta qué se está sirviendo hoy", "Taco Tuesday": "Martes de Tacos", "BOGO": "2x1", "Buy one get one free tacos on Tuesdays with rice &amp; beans": "Tacos al 2x1 los martes con arroz y frijoles", "Menu &amp; prices reflect current listings and may vary in-store. Call to confirm today's specials.": "El menú y los precios reflejan lo que tenemos ahora y pueden variar en el lugar. Llama para confirmar las especialidades de hoy.", "Call to Order &middot; (563) 639-8857": "Llama para ordenar · (563) 639-8857", "Ask About Catering": "Pregunta por el catering", "Straight Off the Line": "Recién salido de la cocina", "Hungry yet?": "¿Ya te dio hambre?", "Until 2 AM Thursday–Saturday, midnight most weeknights — we're here when the kitchen across town isn't.": "Hasta las 2 AM de jueves a sábado, medianoche casi todos los días entre semana — estamos aquí cuando la cocina del otro lado del pueblo ya cerró.", "Dine In or Carry Out": "Come aquí o llévatelo", "Grab a table on Washington Street or call ahead and pick it up hot on your way home.": "Agarra una mesa en Washington Street o llama por adelantado y recógelo calientito de camino a casa.", "Catering &amp; Events": "Catering y Eventos", "Born on a food truck — we love feeding a crowd. Ask about catering your next party or block party.": "Nacimos en un food truck — nos encanta darle de comer a la banda. Pregunta por el catering para tu próxima fiesta o convivio.", "\"Insane\" Margaritas": "Margaritas \"de locura\"", "The bar reviewers rave about — margaritas to pair with every taco, every late night.": "La barra de la que todos hablan — margaritas para acompañar cada taco, cada noche.", "Historic Washington St": "La histórica Washington St", "1330 Washington St, Davenport — a QC hidden gem tucked just off the main drag.": "1330 Washington St, Davenport — un tesoro escondido de las QC, apartado de la calle principal.", "Family-Run": "Negocio familiar", "Authentic, generous, made-to-order — the same family in the kitchen every night.": "Auténtico, generoso, hecho al momento — la misma familia en la cocina cada noche.", "Word of Mouth": "De boca en boca", "What the QC says.": "Lo que dicen en las QC.", "★★★★☆ &nbsp; 4.2 on Google · 4.4 on DoorDash · 96% recommend on Facebook": "★★★★☆   4.2 en Google · 4.4 en DoorDash · 96% lo recomiendan en Facebook", "\"Delicious, authentic — everything was super tasty. The margaritas are insane.\"": "\"Delicioso, auténtico — todo estaba riquísimo. Las margaritas son una locura.\"", "\"I love the elote, the massive burrito and the tacos!\"": "\"¡Me encanta el elote, el burrito enorme y los tacos!\"", "\"Birria tacos and gorditas were delicious.\"": "\"Los tacos de birria y las gorditas estaban deliciosos.\"", "\"A QC hidden gem tucked away on historic Washington St. in Davenport.\"": "\"Un tesoro escondido de las QC, apartado en la histórica Washington St. en Davenport.\"", "Verified diner": "Cliente verificado", "· Review": "· Reseña", "\"Buy 1 get 1 tacos on Tuesday with beans and rice — it was delicious.\"": "\"Tacos al 2x1 los martes con frijoles y arroz — estaba delicioso.\"", "Feed the Whole Crew": "Dale de comer a toda la banda", "We started on a food truck — feeding a crowd is what we do best. Birthdays,\n            graduations, office lunches, late-night parties: tell us the headcount and the date and we'll put\n            together a taco bar that disappears fast.": "Empezamos en un food truck — darle de comer a la banda es lo que mejor hacemos. Cumpleaños,\n            graduaciones, comidas de oficina, fiestas hasta tarde: dinos cuántos son y la fecha y te armamos\n            una barra de tacos que vuela.", "Taco bars, burritos, fajita platters &amp; sides": "Barras de tacos, burritos, charolas de fajitas y complementos", "Food-truck-style service for events": "Servicio estilo food truck para eventos", "Order direct — no third-party fees, no markup": "Ordena directo — sin comisiones de terceros, sin sobreprecio", "Catering a party or event? Reach out by phone or Facebook and we'll plan it with you.": "¿Catering para una fiesta o evento? Contáctanos por teléfono o Facebook y lo planeamos contigo.", "📞 Call (563) 639-8857": "📞 Llama al (563) 639-8857", "💬 Message us on Facebook": "💬 Escríbenos por Facebook", "We answer fastest by phone or a Facebook message.": "Respondemos más rápido por teléfono o por mensaje de Facebook.", "Visit Us": "Visítanos", "Address": "Dirección", "Hours": "Horario", "Monday": "Lunes", "Tuesday": "Martes", "Wednesday": "Miércoles", "Thursday": "Jueves", "Friday": "Viernes", "Saturday": "Sábado", "Sunday": "Domingo", "Hours can vary — call ahead to confirm, especially late night.": "El horario puede variar — llama antes para confirmar, sobre todo en la noche.", "Also on Delivery": "También a domicilio", "Get Directions": "Cómo llegar", "Explore": "Explora", "Our Story": "Nuestra historia", "Order &amp; Connect": "Ordena y conéctate", "&copy; 2026 La Dueña Mexican Restaurant. All Rights Reserved.": "© 2026 La Dueña Mexican Restaurant. Todos los derechos reservados.", "Map": "Mapa", "· Open now": "· Abierto ahora", "· Closed now": "· Cerrado ahora"};
+    var ATTR = {"La Dueña home": "Inicio de La Dueña", "Primary": "Principal", "Open menu": "Abrir menú", "Menu": "Menú", "Close menu": "Cerrar menú", "Mobile": "Móvil", "Scroll down": "Desliza hacia abajo", "Two carne asada tortas plated at the counter, salsa on the side": "Dos tortas de carne asada servidas en el mostrador, con salsa aparte", "Three street tacos — choice of meat on warm corn tortillas with onion and cilantro, salsa verde, salsa roja and fresh lime": "Tres tacos de la calle — la carne de tu elección en tortillas de maíz calientitas con cebolla y cilantro, salsa verde, salsa roja y limón fresco", "A toasted torta on a telera roll stacked with carne asada, crema, pico de gallo and avocado in a basket": "Una torta tostada en pan telera repleta de carne asada, crema, pico de gallo y aguacate en una canasta", "A packed La Dueña burrito wrapped in foil with a side of avocado-tomatillo salsa": "Un burrito de La Dueña bien relleno, envuelto en papel aluminio con salsa de aguacate y tomatillo aparte", "Birria tacos — rich, slow-braised beef in crispy corn tortillas piled with onion and cilantro": "Tacos de birria — res sabrosa cocida a fuego lento en tortillas de maíz crujientes, con bastante cebolla y cilantro", "Menu sections": "Secciones del menú", "A toasted torta stacked with carne asada, crema, pico de gallo and avocado": "Una torta tostada repleta de carne asada, crema, pico de gallo y aguacate", "Three street tacos with cilantro and onion": "Tres tacos de la calle con cilantro y cebolla", "Birria tacos topped with onion and cilantro": "Tacos de birria con cebolla y cilantro encima", "Why La Dueña": "Por qué La Dueña", "5 out of 5 stars": "5 de 5 estrellas", "4 out of 5 stars": "4 de 5 estrellas", "Map to La Dueña, 1330 Washington St, Davenport, IA": "Mapa a La Dueña, 1330 Washington St, Davenport, IA", "Quick actions": "Acciones rápidas"};
+    var HTML = {"0": "Auténtica comida callejera mexicana, <strong>hasta bien entrada la noche.</strong><br />\n          Birria, al pastor y el legendario Hot Cheeto Burrito en la histórica Washington Street.", "1": "El <em>tesoro escondido</em> de las Quad Cities", "2": "<em>La Dueña</em> — \"la jefa\" — ha alimentado a las Quad Cities — primero\n            desde el food truck y ahora desde nuestra cocina en la histórica Washington Street en\n            Davenport. Somos un negocio familiar y orgullosamente auténtico, de esos lugares que los vecinos\n            se guardan para ellos: un tesoro escondido de las QC, apartado de la calle principal.", "3": "Porciones generosas. Antojos intensos para la noche — <em>birria</em> cocida a fuego lento,\n            <em>al pastor</em> dorado, elote de la calle, y el exagerado\n            <em>Hot Cheeto Burrito</em> que nos puso en el mapa. Y sí, las margaritas\n            que los clientes describen como <em>\"una locura.\"</em> Cuando el resto del pueblo cierra, nuestra fila\n            sigue avanzando — estamos abiertos hasta las 2 AM de jueves a sábado.", "4": "Por los que<br />cruzan toda la ciudad.", "5": "<em class=\"m-tag m-tag--veg\">Veg</em> vegetariano &nbsp;·&nbsp; <em class=\"m-tag m-tag--hot\">Viral</em> el que todos publican &nbsp;·&nbsp; <em class=\"m-tag\">Favorite</em> favorito de todos", "6": "Catering y <em>pedidos grandes</em>", "7": "Encuéntranos en<br />Washington St.", "8": "Auténtica comida callejera mexicana, hasta bien entrada la noche.<br />Negocio familiar en la histórica Washington Street, Davenport."};
+    var KEY = "ld_lang";
+    function dec(s){ try{ var e=document.createElement('textarea'); e.innerHTML=s; return e.value; }catch(_){ return String(s); } }
+    function norm(s){ return dec(String(s)).replace(/\s+/g,' ').trim(); }
+    var T={}, A={};
+    for(var k in TEXT){ if(TEXT.hasOwnProperty(k)){ var kk=norm(k); if(kk) T[kk]=TEXT[k]; } }
+    for(var k2 in ATTR){ if(ATTR.hasOwnProperty(k2)){ var na=norm(k2); if(na) A[na]=ATTR[k2]; } }
+    var lang='en';
+    try{
+      var up=new URLSearchParams(location.search).get('lang');
+      if(up==='es'||up==='en'){ lang=up; localStorage.setItem(KEY,up); }
+      else if(localStorage.getItem(KEY)==='es'){ lang='es'; }
+    }catch(_){ try{ if(localStorage.getItem(KEY)==='es') lang='es'; }catch(e){} }
+    var SKIP={SCRIPT:1,STYLE:1,NOSCRIPT:1,TEXTAREA:1,CODE:1};
+    var tnodes=[], anodes=[], hnodes=[];
+    var seen=(window.WeakSet)?new WeakSet():null;
+    var seenH=(window.WeakSet)?new WeakSet():null;
+    function nkey(v){ return v.replace(/\s+/g,' ').trim(); }
+    function scan(root){
+      if(!root||root.nodeType!==1) return;
+      var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null,false), n;
+      while(n=w.nextNode()){
+        var v=n.nodeValue; if(!v) continue; var key=nkey(v); if(!key) continue;
+        var p=n.parentNode; if(!p||SKIP[p.nodeName]) continue;
+        if(!T.hasOwnProperty(key)) continue;
+        if(seen){ if(seen.has(n)) continue; seen.add(n); }
+        tnodes.push({node:n,en:v,key:key});
+      }
+      var names=['placeholder','aria-label','title','alt'];
+      var els=root.querySelectorAll('[placeholder],[aria-label],[title],[alt]');
+      for(var i=0;i<els.length;i++){ var el=els[i];
+        for(var a=0;a<names.length;a++){ var nm=names[a]; if(!el.hasAttribute(nm)) continue;
+          var val=el.getAttribute(nm); var vk=val?nkey(val):''; if(!vk||!A.hasOwnProperty(vk)) continue;
+          anodes.push({el:el,attr:nm,en:val,key:vk});
+        }
+      }
+      var hs=root.querySelectorAll('[data-i18n]');
+      for(var h=0;h<hs.length;h++){ var he=hs[h];
+        if(seenH){ if(seenH.has(he)) continue; seenH.add(he); }
+        var id=he.getAttribute('data-i18n');
+        if(HTML.hasOwnProperty(id)) hnodes.push({el:he,en:he.innerHTML,k:id});
+      }
+    }
+    function repl(orig,es){ var m=orig.match(/^(\s*)([\s\S]*?)(\s*)$/); return m[1]+es+m[3]; }
+    function apply(){
+      for(var i=0;i<tnodes.length;i++){ var o=tnodes[i];
+        o.node.nodeValue=(lang==='es'&&T[o.key]!=null)?repl(o.en,T[o.key]):o.en; }
+      for(var j=0;j<anodes.length;j++){ var e=anodes[j];
+        e.el.setAttribute(e.attr,(lang==='es'&&A[e.key]!=null)?A[e.key]:e.en); }
+      for(var g=0;g<hnodes.length;g++){ var hn=hnodes[g];
+        var want=(lang==='es'&&HTML[hn.k]!=null)?HTML[hn.k]:hn.en;
+        if(hn.el.innerHTML!==want) hn.el.innerHTML=want; }
+      try{ document.documentElement.setAttribute('lang',lang); }catch(_){}
+      var b=document.getElementById('langToggle');
+      if(b){ var ss=b.querySelectorAll('[data-l]'); for(var q=0;q<ss.length;q++){ ss[q].classList.toggle('on',ss[q].getAttribute('data-l')===lang); } }
+    }
+    function setLang(l){ lang=(l==='es')?'es':'en'; try{localStorage.setItem(KEY,lang);}catch(_){}; apply(); }
+    function init(){
+      scan(document.body); apply();
+      var btn=document.getElementById('langToggle');
+      if(btn){ btn.addEventListener('click',function(ev){
+        var el=ev.target; while(el&&el!==btn&&!(el.getAttribute&&el.getAttribute('data-l'))) el=el.parentNode;
+        var l=(el&&el.getAttribute)?el.getAttribute('data-l'):null;
+        setLang(l?l:(lang==='es'?'en':'es'));
+      }); }
+      if(window.MutationObserver){
+        var pending=false;
+        var mo=new MutationObserver(function(){ if(pending) return; pending=true;
+          setTimeout(function(){ pending=false; var b0=tnodes.length+anodes.length+hnodes.length; scan(document.body); if(tnodes.length+anodes.length+hnodes.length!==b0) apply(); },160); });
+        mo.observe(document.body,{childList:true,subtree:true});
+      } else { setTimeout(function(){ scan(document.body); apply(); },1200); setTimeout(function(){ scan(document.body); apply(); },3000); }
+    }
+    if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
+  })();
+
   </script>
 </body>
 </html>
