@@ -150,13 +150,30 @@
     });
   });
 
-  /* ---------- Highlight current day's hours ---------- */
+  /* ---------- Highlight today's row ONLY when actually open now ---------- */
   (function () {
     var rows = document.querySelectorAll("#hours tbody tr");
     if (!rows.length) return;
-    // table order: Mon..Sun -> map JS getDay (0=Sun..6=Sat)
-    var jsDay = new Date().getDay();           // 0 Sun .. 6 Sat
-    var rowIndex = jsDay === 0 ? 6 : jsDay - 1; // Mon=0 .. Sun=6
+    // open/close in minutes from midnight; close > 1440 = runs past midnight into next day
+    var HRS = {
+      0: { o: 960, c: 1440 },  // Sun 4:00 PM – 12:00 AM
+      1: { o: 660, c: 1320 },  // Mon 11:00 AM – 10:00 PM
+      2: { o: 660, c: 1440 },  // Tue 11:00 AM – 12:00 AM
+      3: { o: 660, c: 1440 },  // Wed 11:00 AM – 12:00 AM
+      4: { o: 660, c: 1560 },  // Thu 11:00 AM – 2:00 AM
+      5: { o: 660, c: 1560 },  // Fri 11:00 AM – 2:00 AM
+      6: { o: 660, c: 1560 }   // Sat 11:00 AM – 2:00 AM
+    };
+    var d = new Date();
+    var day = d.getDay();                       // 0 Sun .. 6 Sat
+    var now = d.getHours() * 60 + d.getMinutes();
+    var open = false;
+    var t = HRS[day];
+    if (t && now >= t.o && now < Math.min(t.c, 1440)) open = true;   // today's shift, up to midnight
+    var yt = HRS[(day + 6) % 7];                                     // yesterday
+    if (yt && yt.c > 1440 && now < (yt.c - 1440)) open = true;       // still open from last night's late shift
+    if (!open) return;                                              // closed → no highlight, no "Open now"
+    var rowIndex = day === 0 ? 6 : day - 1;    // table order: Mon..Sun
     if (rows[rowIndex]) rows[rowIndex].classList.add("is-now");
   })();
 
